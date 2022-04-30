@@ -1,0 +1,42 @@
+server:
+  port: 8088
+
+logging:
+  level:
+    org.springframework: DEBUG
+
+#다국어지원 저장은 resources에  messages 이름설정
+spring:
+  messages:
+    basename: messages
+#swagger 설정 , security 설정
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+ #아이디 비번 설정 접속시 필요  고정!!!! 바꾸려면 매번 서버 다시 켜야함 그래서 config만들어서 처리해뒀음
+#  security:
+#    user:
+#      name: minsang
+#      password: 1234
+#      roles: ADMIN
+
+  # 테이블이 생성되고 값들이 들어가도록 설정    defer-datasource-initialization: true
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+
+
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+#모니터링 actuator  더 다양한 정보를 볼수있다
+management:
+    endpoints:
+      web:
+        exposure:
+          include: '*'
